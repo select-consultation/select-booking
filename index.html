@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SELECT | Slot Booking & Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0f172a;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header img {
+      max-width: 120px;
+      margin-bottom: 10px;
+    }
+
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #0f172a;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .box {
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+
+    .qr {
+      max-width: 220px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.png" alt="SELECT Logo">
+  <h1>Slot Booking & Confirmation</h1>
+  <p>Final step to confirm your session</p>
+</header>
+
+<section>
+  <h2>Step 1: Choose Your Slot</h2>
+
+  <p>
+    Select an available time slot based on your convenience.
+    Slots are shown in real time and auto-close once filled.
+  </p>
+
+  <a class="button"
+     href="https://calendar.google.com/calendar/appointments/XXXX"
+     target="_blank">
+    Select Slot
+  </a>
+</section>
+
+<section>
+  <h2>Step 2: Complete Payment</h2>
+
+  <div class="box">
+    <p><strong>Session Fee:</strong> ₹600</p>
+    <p><strong>Payment Method:</strong> UPI</p>
+
+    <a class="button"
+       href="upi://pay?pa=YOUR_UPI_ID&pn=Harsh%20Kumar&am=600&cu=INR">
+      Pay via UPI App
+    </a>
+
+    <p style="margin-top:15px;">Or scan the QR code:</p>
+    <img src="upi-qr.png" class="qr" alt="UPI QR Code">
+  </div>
+</section>
+
+<section>
+  <h2>Step 3: Submit Confirmation</h2>
+
+  <p>
+    After payment, submit the confirmation form with
+    your payment reference and slot details.
+  </p>
+
+  <a class="button"
+     href="https://forms.gle/BDyH1D2XnzQ4UJ1h6"
+     target="_blank">
+    Submit Confirmation Form
+  </a>
+</section>
+
+</body>
+</html>
