@@ -5,6 +5,11 @@
   <title>SELECT | Slot Booking & Payment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- 🔴 CHANGE TO false TO CLOSE BOOKINGS -->
+  <script>
+    const BOOKINGS_OPEN = true;
+  </script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,6 +17,7 @@
       padding: 0;
       color: #222;
       line-height: 1.6;
+      background: #ffffff;
     }
 
     header {
@@ -34,22 +40,33 @@
 
     h2 {
       color: #0f172a;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      margin-bottom: 12px;
     }
 
     .button {
       display: inline-block;
       margin-top: 15px;
-      padding: 12px 20px;
+      padding: 12px 22px;
       background: #0f172a;
       color: #ffffff;
       text-decoration: none;
       border-radius: 4px;
+      font-size: 15px;
+    }
+
+    .button.disabled {
+      background: #9ca3af;
+      pointer-events: none;
+      cursor: not-allowed;
     }
 
     .box {
       background: #f8fafc;
-      padding: 20px;
+      padding: 22px;
       border-radius: 6px;
       margin-top: 20px;
     }
@@ -58,32 +75,71 @@
       max-width: 220px;
       margin-top: 15px;
     }
+
+    .notice {
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      padding: 15px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #f1f1f1;
+      text-align: center;
+      padding: 22px 15px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .social-icons {
+      margin-top: 15px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: #0f172a;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: #2563eb;
+    }
   </style>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
   <img src="logo.png" alt="SELECT Logo">
   <h1>Slot Booking & Confirmation</h1>
-  <p>Final step to confirm your session</p>
+  <p>Final step to confirm your SELECT session</p>
 </header>
 
-<section>
-  <h2>Step 1: Choose Your Slot</h2>
+<!-- BOOKING STATUS -->
+<section id="status-section"></section>
 
+<!-- STEP 1 -->
+<section>
+  <h2>Step 1: Select an Available Slot</h2>
   <p>
-    Select an available time slot based on your convenience.
-    Slots are shown in real time and auto-close once filled.
+    Choose a suitable time slot based on availability.
+    Slots are limited and auto-close once filled.
   </p>
 
-  <a class="button"
-     href="https://calendar.google.com/calendar/appointments/XXXX"
+  <a id="slotBtn" class="button"
+     href="https://calendar.google.com/calendar/appointments/REPLACE_WITH_YOUR_LINK"
      target="_blank">
     Select Slot
   </a>
 </section>
 
+<!-- STEP 2 -->
 <section>
   <h2>Step 2: Complete Payment</h2>
 
@@ -91,30 +147,80 @@
     <p><strong>Session Fee:</strong> ₹600</p>
     <p><strong>Payment Method:</strong> UPI</p>
 
-    <a class="button"
+    <a id="payBtn" class="button"
        href="upi://pay?pa=YOUR_UPI_ID&pn=Harsh%20Kumar&am=600&cu=INR">
-      Pay via UPI App
+      Pay via UPI App (Mobile)
     </a>
 
-    <p style="margin-top:15px;">Or scan the QR code:</p>
-    <img src="upi-qr.png" class="qr" alt="UPI QR Code">
+    <p style="margin-top:15px;">
+      Or scan the QR code using any UPI-enabled application:
+    </p>
+
+    <img src="upi-qr.png" alt="UPI QR Code" class="qr">
+
+    <!-- Payment Instructions Button -->
+    <a class="button"
+       href="https://docs.google.com/document/d/1AWCX94GqPeY8RsVxDGq9LVEcpjSq3AW6TL9-Xh239Hg/edit?usp=sharing"
+       target="_blank">
+      View Payment Instructions
+    </a>
   </div>
 </section>
 
+<!-- STEP 3 -->
 <section>
   <h2>Step 3: Submit Confirmation</h2>
-
   <p>
-    After payment, submit the confirmation form with
-    your payment reference and slot details.
+    After completing payment, submit the confirmation form
+    with your slot and payment reference details.
   </p>
 
-  <a class="button"
+  <a id="formBtn" class="button"
      href="https://forms.gle/BDyH1D2XnzQ4UJ1h6"
      target="_blank">
-    Submit Confirmation Form
+    Submit Confirmation
   </a>
 </section>
+
+<!-- SUPPORT -->
+<section>
+  <h2>Need Help?</h2>
+  <p>
+    📧 <a href="mailto:consultation.select@gmail.com">
+      consultation.select@gmail.com
+    </a>
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© SELECT | Interview Preparation & Consultation</p>
+
+  <div class="social-icons">
+    <a href="https://select-consultation.github.io/select/" target="_blank"><i class="fas fa-globe"></i></a>
+    <a href="https://www.linkedin.com/company/select-consultation/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://youtube.com/@consultation.select" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.instagram.com/consultation.select" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/consultselect" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="mailto:consultation.select@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</footer>
+
+<script>
+  if (!BOOKINGS_OPEN) {
+    document.getElementById("slotBtn").classList.add("disabled");
+    document.getElementById("payBtn").classList.add("disabled");
+    document.getElementById("formBtn").classList.add("disabled");
+
+    document.getElementById("status-section").innerHTML = `
+      <div class="notice">
+        <strong>Bookings Closed:</strong>
+        Currently, no new slots are being accepted.
+        Please check back later or follow SELECT for updates.
+      </div>
+    `;
+  }
+</script>
 
 </body>
 </html>
