@@ -1,211 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>SELECT | Consultation & Bookings</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>SELECT | Slot Booking & Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- 🔴 UPDATE HERE: Set to false to close bookings -->
+  <script>
+    const BOOKINGS_OPEN = true;
+  </script>
 
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
     body {
+      font-family: Arial, sans-serif;
       margin: 0;
+      padding: 0;
+      color: #222;
+      line-height: 1.6;
+      background: #ffffff;
+    }
+
+    header {
+      background: #0f172a;
+      color: #ffffff;
+      text-align: center;
       padding: 40px 20px;
-      background: #f9fafb;
-      color: #111827;
     }
 
-    .container {
-      max-width: 720px;
-      margin: 0;
-    }
-
-    h1 {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    h2 {
-      font-size: 22px;
-      margin-top: 40px;
+    header img {
+      max-width: 120px;
       margin-bottom: 12px;
     }
 
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      color: #0f172a;
+      margin-bottom: 14px;
+    }
+
     p {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #374151;
-      max-width: 640px;
+      margin-bottom: 14px;
     }
 
-    .badge {
-      display: inline-block;
+    /* Buttons – unified alignment */
+    .button {
+      display: block;
+      width: 260px;
       margin-top: 12px;
-      padding: 6px 12px;
-      background: #fee2e2;
-      color: #991b1b;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: 6px;
-    }
-
-    .badge.open {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 12px 18px;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
+      padding: 12px 22px;
+      background: #0f172a;
+      color: #ffffff;
       text-decoration: none;
-      color: #fff;
-      background: #111827;
+      border-radius: 4px;
+      font-size: 15px;
+      text-align: center;
     }
 
-    .btn.secondary {
-      background: #4b5563;
+    .button:hover {
+      background: #1e293b;
     }
 
-    .btn.outline {
-      background: transparent;
-      color: #111827;
-      border: 1px solid #d1d5db;
+    .button.disabled {
+      background: #9ca3af;
+      pointer-events: none;
+      cursor: not-allowed;
     }
 
-    .section {
-      margin-top: 32px;
-    }
-
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .socials {
+    /* Box (Payment) */
+    .box {
+      background: #f8fafc;
+      padding: 24px;
+      border-radius: 6px;
       margin-top: 20px;
-      display: flex;
-      gap: 16px;
+      text-align: left; /* 🔧 FIX */
     }
 
-    .socials a {
-      color: #374151;
+    .qr {
+      max-width: 220px;
+      margin: 16px 0;
+      display: block;
+    }
+
+    /* Notice */
+    .notice {
+      background: #fff7ed;
+      border-left: 4px solid #f97316;
+      padding: 15px;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #f1f1f1;
+      text-align: center;
+      padding: 24px 15px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .social-icons {
+      margin-top: 14px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: #0f172a;
       font-size: 20px;
       text-decoration: none;
     }
 
-    .footer {
-      margin-top: 60px;
-      font-size: 13px;
-      color: #6b7280;
+    .social-icons a:hover {
+      color: #2563eb;
     }
   </style>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
-  <div class="container">
+<header>
+  <img src="logo.png" alt="SELECT Logo">
+  <h1>Slot Booking & Confirmation</h1>
+  <p>Final step to confirm your SELECT session</p>
+</header>
 
-    <!-- HEADER -->
-    <h1>SELECT Consultation</h1>
-    <p>
-      Structured, outcome-driven consultation for students, professionals, and businesses.
-      Bookings are managed through a controlled workflow to ensure quality and priority handling.
+<section id="status-section"></section>
+
+<section>
+  <h2>Step 1: Select an Available Slot</h2>
+  <p>Choose a suitable time slot based on availability.</p>
+
+  <a id="slotBtn" class="button"
+     href="https://calendar.google.com/calendar/appointments/REPLACE_WITH_YOUR_LINK"
+     target="_blank">
+    Select Slot
+  </a>
+</section>
+
+<section>
+  <h2>Step 2: Complete Payment</h2>
+
+  <div class="box">
+    <p><strong>Session Fee:</strong> ₹600</p>
+    <p><strong>Payment Method:</strong> UPI</p>
+
+    <a id="payBtn" class="button"
+       href="upi://pay?pa=YOUR_UPI_ID&pn=Harsh%20Kumar&am=600&cu=INR">
+      Pay via UPI App (Mobile)
+    </a>
+
+    <p style="margin-top:16px;">
+      Or scan the QR code using any UPI-enabled application:
     </p>
 
-    <!-- BOOKING STATUS -->
-    <!-- Change class to "badge open" when bookings are live -->
-    <div class="badge">Bookings Closed</div>
+    <img src="upi-qr.png" alt="UPI QR Code" class="qr">
 
-    <!-- ABOUT -->
-    <div class="section">
-      <h2>What We Help With</h2>
-      <p>
-        Career guidance, academic strategy, startup & business consultation,
-        product and data-driven decision making — tailored for both B2C and B2B clients.
-      </p>
-    </div>
-
-    <!-- BOOK APPOINTMENT -->
-    <div class="section">
-      <h2>Book an Appointment</h2>
-      <p>
-        Fill out the consultation form to express interest. Eligible candidates will
-        receive payment and slot-booking instructions based on urgency and availability.
-      </p>
-
-      <!-- GOOGLE FORM LINK -->
-      <a href="YOUR_GOOGLE_FORM_LINK_HERE" class="btn">
-        Fill Consultation Form
-      </a>
-    </div>
-
-    <!-- PAYMENT INSTRUCTIONS -->
-    <div class="section">
-      <h2>Payment Instructions</h2>
-      <p>
-        Payment is required only after confirmation. Please read the instructions carefully
-        before proceeding.
-      </p>
-
-      <div class="links">
-        <!-- PAYMENT PAGE / QR PAGE -->
-        <a href="YOUR_PAYMENT_PAGE_LINK_HERE" class="btn secondary">
-          Proceed to Payment
-        </a>
-
-        <!-- GOOGLE DOC LINK -->
-        <a href="YOUR_GOOGLE_DOC_INSTRUCTIONS_LINK_HERE" class="btn outline">
-          View Payment Instructions (Google Doc)
-        </a>
-      </div>
-    </div>
-
-    <!-- SOCIAL LINKS -->
-    <div class="section">
-      <h2>Connect With Us</h2>
-
-      <div class="socials">
-        <a href="YOUR_LINKEDIN_LINK_HERE" title="LinkedIn">
-          <i class="fab fa-linkedin"></i>
-        </a>
-
-        <a href="YOUR_INSTAGRAM_LINK_HERE" title="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-
-        <a href="YOUR_TWITTER_LINK_HERE" title="Twitter / X">
-          <i class="fab fa-x-twitter"></i>
-        </a>
-
-        <a href="YOUR_YOUTUBE_LINK_HERE" title="YouTube">
-          <i class="fab fa-youtube"></i>
-        </a>
-      </div>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-      © 2026 SELECT Consultation. All rights reserved.
-    </div>
-
+    <a class="button"
+       href="https://docs.google.com/document/REPLACE_WITH_DOC_LINK"
+       target="_blank">
+      View Payment Instructions
+    </a>
   </div>
+</section>
+
+<section>
+  <h2>Step 3: Submit Confirmation</h2>
+  <p>Submit slot and payment reference.</p>
+
+  <a id="formBtn" class="button"
+     href="https://forms.gle/REPLACE_WITH_FORM_LINK"
+     target="_blank">
+    Submit Confirmation
+  </a>
+</section>
+
+<section>
+  <h2>Need Help?</h2>
+  <p>📧 <a href="mailto:consultation.select@gmail.com">consultation.select@gmail.com</a></p>
+</section>
+
+<footer>
+  <p>© SELECT | Interview Preparation & Consultation</p>
+
+  <div class="social-icons">
+    <a href="https://select-consultation.github.io/select/" target="_blank"><i class="fas fa-globe"></i></a>
+    <a href="https://www.linkedin.com/company/select-consultation/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://youtube.com/@consultation.select" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.instagram.com/consultation.select" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/consultselect" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="mailto:consultation.select@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</footer>
+
+<script>
+  if (!BOOKINGS_OPEN) {
+    ["slotBtn", "payBtn", "formBtn"].forEach(id =>
+      document.getElementById(id).classList.add("disabled")
+    );
+
+    document.getElementById("status-section").innerHTML = `
+      <div class="notice">
+        <strong>Bookings Closed:</strong>
+        No new slots are being accepted currently.
+      </div>
+    `;
+  }
+</script>
 
 </body>
 </html>
